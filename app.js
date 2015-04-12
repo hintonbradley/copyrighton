@@ -30,6 +30,10 @@ app.get('/login', function(req,res){
   res.render("login");
 });
 
+//Creating get request for search page which renders the signup file in views/users directory (static page?):
+app.get('/search', function(req,res){
+  res.render("search");
+});
 
 
 
