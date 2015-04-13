@@ -51,7 +51,7 @@ app.post("/signup", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
   // create the new user
-  db.User.create({email:email, password:password}).then(function(newUser){
+  db.User.createSecure(email,password).then(function(user){
         res.send("SIGNED UP!");
       });
 });
