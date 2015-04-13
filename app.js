@@ -2,6 +2,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     db = require("./models"),
+//In order to track sessions, express-session is required (command-line:npm install --save express-session):
     session = require("express-session"),
     app = express();
 
@@ -42,20 +43,49 @@ app.get('/allusers', function(req,res) {
   })
 });
 
-//Creating post request to add a new user to the users table (not working yet) - will get the "SIGNED UP" message, but will not list on /allUsers page:
-
-// where the user submits the sign-up form
+//Creating post request to add a new user to the users table:
+//page where user will enter new user info:
 app.post("/signup", function (req, res) {
-
-  // grab the user from the params
+  //Creating variables from params entered by new user (from user/signup.ejs form):
   var email = req.body.email;
   var password = req.body.password;
-  // create the new user
+  //Creates a new user using createSecure function (from user.js file):
   db.User.createSecure(email,password).then(function(user){
-        res.send("SIGNED UP!");
-      });
+        res.render("login");
+    });
 });
 
+//Creating ability to track sessions:
+app.use("/", function (req, res, next) {
+
+  req.login = function (user) {
+    req.session.userId = user.id;
+  };
+
+  req.currentUser = function () {
+    return db.User.
+      find({
+        where: {
+          id: req.session.userId
+       }
+      }).
+      then(function (user) {
+        req.user = user;
+        return user;
+      })
+  };
+
+  req.logout = function () {
+    req.session.userId = null;
+    req.user = null;
+  }
+
+  next(); 
+});
+
+
+
+//Telling server to listen to the site:
 app.listen(3000, function () {
   console.log("SERVER RUNNING");
 });
