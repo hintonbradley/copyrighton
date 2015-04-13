@@ -35,18 +35,23 @@ app.get('/search', function(req,res){
   res.render("search");
 });
 
+//Creating get request to display all users (for testing only):
+app.get('/allusers', function(req,res) {
+  db.User.all().then(function(allUsers){
+    res.render('users', {dbUsers: allUsers});
+  })
+});
 
+//Creating post request to add a new user to the users table (not working yet) - will get the "SIGNED UP" message, but will not list on /allUsers page:
 
 // where the user submits the sign-up form
-app.post("/users", function (req, res) {
+app.post("/signup", function (req, res) {
 
   // grab the user from the params
-  var user = req.body.user;
-
+  var email = req.body.email;
+  var password = req.body.password;
   // create the new user
-  db.User.
-    createSecure(user.email, user.password).
-    then(function(){
+  db.User.create({email:email, password:password}).then(function(newUser){
         res.send("SIGNED UP!");
       });
 });

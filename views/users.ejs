@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+  <h1>Users:</h1>
+  <% dbUsers.forEach(function(allUsers) { %>
+  <div>
+    <%= allUsers.email %>
+  </div>
+  <div>
+    <%= allUsers.passwordDigest %>
+  </div>
+  <% }) %>
+</body>
+</html>
