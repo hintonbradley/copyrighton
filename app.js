@@ -10,61 +10,27 @@ var express = require('express'),
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
+//Defining the req.session (specific user who logs in):
 app.use(session({
-  secret: 'super secret',
+  secret: 'Double Top Secret Probation',
   resave: false,
-  saveUninitialized: true
+  save: {uninitialized: true
+  }
 }))
-
-//Creating get request for index page which renders the index file in views directory (static page):
-app.get("/", function (req, res) {
-  res.render('index');
-});
-
-//Creating get request for signup page which renders the signup file in views/users directory (static page?):
-app.get('/signup', function(req,res){
-  res.render("user/signup");
-});
-
-//Creating get request for signup page which renders the signup file in views/users directory (static page?):
-app.get('/login', function(req,res){
-  res.render("login");
-});
-
-//Creating get request for search page which renders the signup file in views/users directory (static page?):
-app.get('/search', function(req,res){
-  res.render("search");
-});
-
-//Creating get request to display all users (for testing only):
-app.get('/allusers', function(req,res) {
-  db.User.all().then(function(allUsers){
-    res.render('users', {dbUsers: allUsers});
-  })
-});
-
-//Creating post request to add a new user to the users table:
-//page where user will enter new user info:
-app.post("/signup", function (req, res) {
-  //Creating variables from params entered by new user (from user/signup.ejs form):
-  var email = req.body.email;
-  var password = req.body.password;
-  //Creates a new user using createSecure function (from user.js file):
-  db.User.createSecure(email,password).then(function(user){
-        res.render("login");
-    });
-});
 
 //Creating ability to track sessions:
 app.use("/", function (req, res, next) {
+
+//If user has not signed in, this code sets req.session.userId to null, otherwise, it will set to current user:
+  req.session.userId = req.session.userId || null;
+
 
   req.login = function (user) {
     req.session.userId = user.id;
   };
 
   req.currentUser = function () {
-    return db.User.
-      find({
+    return db.User.find({
         where: {
           id: req.session.userId
        }
@@ -81,6 +47,81 @@ app.use("/", function (req, res, next) {
   }
 
   next(); 
+});
+
+//Creating get request for index page which renders the index file in views directory (static page):
+app.get("/", function (req, res) {
+  res.render('index');
+});
+
+//Creating get request for signup page which renders the signup file in views/users directory (static page?):
+app.get('/signup', function(req,res){
+  res.render("user/signup");
+});
+
+//Creating get request for signup page which renders the signup file in views/users directory (static page?):
+app.get('/login', function(req,res){
+  res.render("user/login");
+});
+
+//Creating get request for signup page which renders the signup file in views/users directory (static page?):
+app.get('/profile', function(req,res){
+  if(req.session.userId === null) {
+    // User is not logged in, so don't let them pass
+    res.redirect("/login");
+  } else {
+    req.currentUser().then(function(dbUser){
+      if (dbUser) {
+        res.render('user/profile',{User:dbUser})
+      }
+    });
+  }
+});
+
+
+//Creating get request for search page which renders the signup file in views/users directory (static page?):
+app.get('/search', function(req,res){
+  res.render("search");
+});
+
+//Creating get request to display all users (for testing only):
+app.get('/allusers', function(req,res) {
+  db.User.all().then(function(allUsers){
+    res.render('users', {dbUsers: allUsers});
+  })
+});
+
+
+//Creating post request to add a new user to the users table:
+//page where user will enter new user info:
+app.post("/signup", function (req, res) {
+  //Creating variables from params entered by new user (from user/signup.ejs form):
+  var email = req.body.email;
+  var password = req.body.password;
+  //Creates a new user using createSecure function (from user.js file):
+  db.User.createSecure(email,password).then(function(user){
+        res.render("user/login");
+    });
+});
+
+//Creating post request for user login:
+app.post("/login", function (req, res) {
+  var user = req.body;
+  db.User.authenticate(user.email, user.password)
+    .then(function (dbUser) {
+      if(dbUser) {
+        req.login(dbUser);
+        res.redirect('/profile');
+      } else {
+        res.send('You failed');
+      }
+    });
+});
+
+//Creating logout for current User:
+app.get('/logout', function(req,res){
+  req.logout();
+  res.redirect('/login');
 });
 
 
