@@ -2,6 +2,8 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     db = require("./models"),
+//For API request?
+    request = require('request'),
 //In order to track sessions, express-session is required (command-line:npm install --save express-session):
     session = require("express-session"),
     app = express();
@@ -70,6 +72,7 @@ app.get('/profile', function(req,res){
     // User is not logged in, so don't let them pass
     res.redirect("/login");
   } else {
+    //If user information is valid, allow them to continue to their profile:
     req.currentUser().then(function(dbUser){
       if (dbUser) {
         res.render('user/profile',{User:dbUser})
@@ -78,11 +81,6 @@ app.get('/profile', function(req,res){
   }
 });
 
-
-//Creating get request for search page which renders the signup file in views/users directory (static page?):
-app.get('/search', function(req,res){
-  res.render("search");
-});
 
 //Creating get request to display all users (for testing only):
 app.get('/allusers', function(req,res) {
@@ -117,6 +115,33 @@ app.post("/login", function (req, res) {
       }
     });
 });
+
+app.get('/search', function (req, res) {
+  console.log("hello world");
+  var songSearch = req.query.songTitle;
+  console.log("This is our song search " + songSearch);
+  if (!songSearch) {
+    res.render("search");
+  } else {
+    var url = "https://freemusicarchive.org/api/trackSearch?q="+songSearch+"&limit=10";
+
+    request(url, function(err, resp, body){
+      console.log("I'm in here 2");
+      if (!err && resp.statusCode === 200) {
+        console.log("I'm in here 3");
+        var jsonData = JSON.parse(body);
+        if (!jsonData.Search) {
+          res.render("search", {songs: jsonData });
+        }
+        res.render("search", {songs: jsonData });
+      }
+    });
+  }
+});
+
+
+
+
 
 //Creating logout for current User:
 app.get('/logout', function(req,res){
