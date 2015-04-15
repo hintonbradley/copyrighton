@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt": "^0.8.2",
     "body-parser": "^1.12.2",
+    "cli": "^0.6.6",
     "ejs": "^2.3.1",
     "express": "^4.12.3",
     "express-session": "^1.11.1",

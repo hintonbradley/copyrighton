@@ -7,6 +7,10 @@ var express = require('express'),
 //In order to track sessions, express-session is required (command-line:npm install --save express-session):
     session = require("express-session"),
     app = express();
+//Adding key information for API:
+var env = process.env;
+//var api_key = env.MY_API_KEY;
+
 
 //installed ejs to read html files under views/user directory:
 app.set("view engine", "ejs");
@@ -116,29 +120,32 @@ app.post("/login", function (req, res) {
     });
 });
 
+
+
+
+
 app.get('/search', function (req, res) {
-  console.log("hello world");
+  console.log("this is a search function");
   var songSearch = req.query.songTitle;
   console.log("This is our song search " + songSearch);
-  if (!songSearch) {
-    res.render("search");
-  } else {
-    var url = "https://freemusicarchive.org/api/trackSearch?q="+songSearch+"&limit=10";
+// We require the module
+var request = require('request');
 
-    request(url, function(err, resp, body){
-      console.log("I'm in here 2");
-      if (!err && resp.statusCode === 200) {
-        console.log("I'm in here 3");
-        var jsonData = JSON.parse(body);
-        if (!jsonData.Search) {
-          res.render("search", {songs: jsonData });
-        }
-        res.render("search", {songs: jsonData });
-      }
-    });
-  }
+// We use the request module to make a request to
+// google.com. We pass in a callback that takes in three
+// parameters, error, response, and body.
+request('https://api.spotify.com/v1/albums/4EUf4YyNjuXypWY6W5wEDm', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      //variables are declared to contain the body within another object in order to pull specific information from body:
+      var json = body;
+    var myObj = JSON.parse(json);
+    var myFirstArray = myObj.copyrights;
+    //used http://jsonviewer.stack.hu/ to view body.
+    res.send(myFirstArray[0].text);
+ //     res.send("This is the body" + body) // Show the HTML for the Google homepage. 
+    }
+  });
 });
-
 
 
 
@@ -152,6 +159,6 @@ app.get('/logout', function(req,res){
 
 
 //Telling server to listen to the site:
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function {
   console.log("SERVER RUNNING");
 });
