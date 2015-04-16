@@ -5,11 +5,13 @@ module.exports = function(sequelize, DataTypes) {
     album_title: DataTypes.STRING,
     artist_name: DataTypes.STRING,
     album_id: DataTypes.STRING,
-    copyright: DataTypes.STRING
+    copyright: DataTypes.STRING,
+    UserId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        this.belongsTo(models.User);
       }
     }
   });

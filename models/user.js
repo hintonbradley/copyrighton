@@ -16,6 +16,9 @@ module.exports = function (sequelize, DataTypes){
       validate: {
         notEmpty: true
       }
+    },
+    song_id: {
+      type: DataTypes.INTEGER
     }
   },
 
@@ -56,6 +59,10 @@ module.exports = function (sequelize, DataTypes){
           }
 
         });
+      },
+       associate: function(models) {
+        //associations can be defined here
+        this.hasMany(models.Song);
       }
 
     } // close classMethods

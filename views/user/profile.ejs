@@ -6,7 +6,23 @@
 </head>
 <body>
 	<div>
- 		Welcome, <%= User.email %>!
+ 		<h1>Welcome, <%= user.email %>!</h1>
+	</div>
+		<h3>Add a new favorite song to your profile:</h3>
+		<form method="POST" action="/profile?_method=PUT">
+                                <input type="text" name="songTitle" placeholder="Song Title"></br></br>
+                                <button>Add Song</button>
+                            </form>
+	<div>
+		<h3>Search for a favorite song <a href="search">here</a>.</h3>
+	</div>
+	<div>
+		<h4>Your favorite songs:</h4>
+		<ul>
+			<% songs.forEach(function(song) { %>
+				<li><%= song.song_title %></li>
+			<% }); %>
+		</ul>
 	</div>
 	<div>
 	<form method="GET" action="/logout">

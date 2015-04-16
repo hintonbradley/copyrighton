@@ -10,7 +10,9 @@ var express = require('express'),
 //Adding key information for API:
 var env = process.env;
 //var api_key = env.MY_API_KEY;
+var methodOveride = require('method-override');
 
+app.use(methodOveride("_method"));
 
 //installed ejs to read html files under views/user directory:
 app.set("view engine", "ejs");
@@ -67,7 +69,14 @@ app.get('/signup', function(req,res){
 
 //Creating get request for signup page which renders the signup file in views/users directory (static page?):
 app.get('/login', function(req,res){
-  res.render("user/login");
+  if((req.session.userId===null)||(req.session.userId===undefined)) {
+    // If no user is currently logged in, then render the login page:
+      res.render("user/login");
+    } 
+    else {
+    //If user is already in a session, redirect to the profile page:
+    res.redirect('/profile');
+  }
 });
 
 //Creating get request for signup page which renders the signup file in views/users directory (static page?):
@@ -77,22 +86,26 @@ app.get('/profile', function(req,res){
     res.redirect("/login");
   } else {
     //If user information is valid, allow them to continue to their profile:
-    req.currentUser().then(function(dbUser){
-      if (dbUser) {
-        res.render('user/profile',{User:dbUser})
+    req.currentUser().then(function(user){
+      if (user) {
+        user.getSongs().then(function(songs) {
+          res.render('user/profile', { user: user, songs: songs });
+        });
       }
     });
   }
 });
 
-
-//Creating get request to display all users (for testing only):
-app.get('/allusers', function(req,res) {
-  db.User.all().then(function(allUsers){
-    res.render('users', {dbUsers: allUsers});
-  })
+//Creating post request to add a new favorite song to the users table:
+app.put("/profile", function (req, res) {
+  //Creating variables from params entered by new user (from user/signup.ejs form):
+  var song = req.body.songTitle;
+  var user = req.session.userId;
+  //Creates a new user using createSecure function (from user.js file):
+  db.Song.create({song_title:song,user_id:user}).then(function(song){
+        res.redirect("/profile");
+    });
 });
-
 
 //Creating post request to add a new user to the users table:
 //page where user will enter new user info:
@@ -139,6 +152,7 @@ app.get('/songs', function (req, res) {
   //      console.log("This is my albumName: "+ albumName);
     }
     console.log("This is my object data: " +jsonData);
+    console.log(body);
     res.render('songs',{taco: jsonData});
   });
 });
