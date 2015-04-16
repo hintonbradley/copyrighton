@@ -1,7 +1,11 @@
-//Adding libraries and modules to app:
+//ADDING LIBRARIES/MODULES/MIDDLEWARE TO APP://
+///////////////////////////////////////////////
+//Creating an Express application:
 var express = require('express'),
-    bodyParser = require('body-parser'),
-    db = require("./models"),
+//Adding bodyParser Middleware:
+bodyParser = require('body-parser'),
+
+db = require("./models"),
 //For API request?
     request = require('request'),
 //In order to track sessions, express-session is required (command-line:npm install --save express-session):
@@ -102,7 +106,7 @@ app.put("/profile", function (req, res) {
   var song = req.body.songTitle;
   var user = req.session.userId;
   //Creates a new user using createSecure function (from user.js file):
-  db.Song.create({song_title:song,user_id:user}).then(function(song){
+  db.Song.create({song_title:song,UserId:user}).then(function(song){
         res.redirect("/profile");
     });
 });
@@ -159,19 +163,16 @@ app.get('/songs', function (req, res) {
 
 
 
-app.get('/album', function (req, res) {
-  var spotifyUrl = "https://api.spotify.com/v1/albums/{" + id + "}";
-  console.log("This is my array:" +searchArray);
-  var url = spotifyUrl + searchArray + "&type=track";
-  console.log(url);
+app.get('/album/:id', function (req, res) {
+  var url = "https://api.spotify.com/v1/albums/" + req.params.id;
+  console.log("This is my url /n/n/n/n/n/n/n/" + url);
   request(url, function(err, resp, body){
     if (!err && resp.statusCode === 200) {
         var jsonData = JSON.parse(body);
 //        var albumName = jsonData.tracks.href;
   //      console.log("This is my albumName: "+ albumName);
     }
-    console.log("This is my object data: " +jsonData);
-    res.render('songs',{taco: jsonData});
+    res.render('album',{taco: jsonData});
   });
 });
 

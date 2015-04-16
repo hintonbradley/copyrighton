@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Song search page</title>
+</head>
+<body>
+	<h2>Click on an album title to view copyright information</h2>
+	<% for(var i = 0; i < taco.copyrights.length; i++) { %>
+	<div>
+		<br><u>Copyright held by:</u> <%=taco.copyrights[i].text%></a>
+	</div>
+	<% } %>
+
+</body>
+</html>
