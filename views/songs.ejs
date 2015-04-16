@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Song search page</title>
+</head>
+<body>
+	<h2>Click on an album title to view copyright information</h2>
+	<% for(var i = 0; i < taco.tracks.items.length; i++) { %>
+	<div>
+		<br><u>Song Title:</u> <%=taco.tracks.items[i].name%></a>
+		<br><u>Album Title:</u> <a href="/album"></u><%=taco.tracks.items[i].album.name%></a>
+		<br><u>Artist Name:</u> <%=taco.tracks.items[i].artists[0].name%>
+		<br><u>Album ID:</u> <%=taco.tracks.items[i].album.id%>
+
+	</div>
+	<% } %>
+
+</body>
+</html>
+

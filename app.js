@@ -121,32 +121,45 @@ app.post("/login", function (req, res) {
 });
 
 
+app.get('/search', function(req,res) {
+  res.render('search')
+});
 
-
-
-app.get('/search', function (req, res) {
-  console.log("this is a search function");
+app.get('/songs', function (req, res) {
+  var spotifyUrl = "https://api.spotify.com/v1/search?q=name:";
   var songSearch = req.query.songTitle;
-  console.log("This is our song search " + songSearch);
-// We require the module
-var request = require('request');
-
-// We use the request module to make a request to
-// google.com. We pass in a callback that takes in three
-// parameters, error, response, and body.
-request('https://api.spotify.com/v1/albums/4EUf4YyNjuXypWY6W5wEDm', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      //variables are declared to contain the body within another object in order to pull specific information from body:
-      var json = body;
-    var myObj = JSON.parse(json);
-    var myFirstArray = myObj.copyrights;
-    //used http://jsonviewer.stack.hu/ to view body.
-    res.send(myFirstArray[0].text);
- //     res.send("This is the body" + body) // Show the HTML for the Google homepage. 
+  var searchArray = songSearch.split(' ').join("&20");
+  console.log("This is my array:" +searchArray);
+  var url = spotifyUrl + searchArray + "&type=track";
+  console.log(url);
+  request(url, function(err, resp, body){
+    if (!err && resp.statusCode === 200) {
+        var jsonData = JSON.parse(body);
+//        var albumName = jsonData.tracks.href;
+  //      console.log("This is my albumName: "+ albumName);
     }
+    console.log("This is my object data: " +jsonData);
+    res.render('songs',{taco: jsonData});
   });
 });
 
+
+
+app.get('/album', function (req, res) {
+  var spotifyUrl = "https://api.spotify.com/v1/albums/{" + id + "}";
+  console.log("This is my array:" +searchArray);
+  var url = spotifyUrl + searchArray + "&type=track";
+  console.log(url);
+  request(url, function(err, resp, body){
+    if (!err && resp.statusCode === 200) {
+        var jsonData = JSON.parse(body);
+//        var albumName = jsonData.tracks.href;
+  //      console.log("This is my albumName: "+ albumName);
+    }
+    console.log("This is my object data: " +jsonData);
+    res.render('songs',{taco: jsonData});
+  });
+});
 
 
 
@@ -156,9 +169,7 @@ app.get('/logout', function(req,res){
   res.redirect('/login');
 });
 
-
-
 //Telling server to listen to the site:
-app.listen(process.env.PORT || 3000, function {
+app.listen(process.env.PORT || 3000), function () {
   console.log("SERVER RUNNING");
-});
+};
