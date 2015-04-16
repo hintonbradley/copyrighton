@@ -143,9 +143,9 @@ app.get('/search', function(req,res) {
 });
 
 app.get('/songs', function (req, res) {
-  var spotifyUrl = "https://api.spotify.com/v1/search?q=name:";
+  var spotifyUrl = "https://api.spotify.com/v1/search?q=track:";
   var songSearch = req.query.songTitle;
-  var searchArray = songSearch.split(' ').join("&20");
+  var searchArray = songSearch.split(' ').join("+");
   console.log("This is my array:" +searchArray);
   var url = spotifyUrl + searchArray + "&type=track";
   console.log(url);
