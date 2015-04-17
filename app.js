@@ -59,12 +59,12 @@ app.get("/", function (req, res) {
   res.render('index');
 });
 
-//Creating get request for signup page which renders the signup file in views/users directory (static page?):
+//Creating get request for signup page:
 app.get('/signup', function(req,res){
   res.render("user/signup");
 });
 
-//Creating get request for signin page which renders the login file in views/users directory:
+//Creating get request for login page:
 app.get('/login', function(req,res){
   if((req.session.userId===null)||(req.session.userId===undefined)) {
     // If no user is currently logged in, then render the login page:
@@ -74,6 +74,45 @@ app.get('/login', function(req,res){
     //If user is already in a session, redirect to the profile page:
     res.redirect('/profile');
   }
+});
+
+//Get request for search page:
+app.get('/search', function(req,res) {
+  res.render('search')
+});
+
+//Get request for songs page:
+app.get('/songs', function (req, res) {
+  var spotifyUrl = "https://api.spotify.com/v1/search?q=track:";
+  var songSearch = req.query.songTitle;
+  var searchArray = songSearch.split(' ').join("+");
+  console.log("This is my array:" +searchArray);
+  var url = spotifyUrl + searchArray + "&type=track";
+  console.log(url);
+  request(url, function(err, resp, body){
+    if (!err && resp.statusCode === 200) {
+        var jsonData = JSON.parse(body);
+//        var albumName = jsonData.tracks.href;
+  //      console.log("This is my albumName: "+ albumName);
+    }
+    console.log("This is my object data: " +jsonData);
+    console.log(body);
+    res.render('songs',{taco: jsonData, songTitle: req.query.songTitle});
+  });
+});
+
+//Creating get request for album page:
+app.get('/album/:id', function (req, res) {
+  var url = "https://api.spotify.com/v1/albums/" + req.params.id;
+  console.log("This is my url /n/n/n/n/n/n/n/" + url);
+  request(url, function(err, resp, body){
+    if (!err && resp.statusCode === 200) {
+        var jsonData = JSON.parse(body);
+//        var albumName = jsonData.tracks.href;
+  //      console.log("This is my albumName: "+ albumName);
+    }
+    res.render('album',{taco: jsonData, albumId: req.params.id, songTitle: req.query.songTitle });
+  });
 });
 
 //Creating get request for profile page which renders the signup file in views/users directory (static page?):
@@ -93,8 +132,9 @@ app.get('/profile', function(req,res){
   }
 });
 
-
-app.get('/album/:id', function (req, res) {
+/*CODE IN PROGRESS:
+//Rewriting get request for profile page to include api call to show copyright information:
+app.get('/profile', function(req,res){
   var url = "https://api.spotify.com/v1/albums/" + req.params.id;
   console.log("This is my url /n/n/n/n/n/n/n/" + url);
   request(url, function(err, resp, body){
@@ -106,15 +146,16 @@ app.get('/album/:id', function (req, res) {
     res.render('album',{taco: jsonData, albumId: req.params.id, songTitle: req.query.songTitle });
   });
 });
+END OF CODE IN PROGRESS */
+
+//POST REQUESTS
+//////////////
 
 
-
-
+//Creating post for profile page so user can save a copyright (for now just the title) to their profile:
 app.post('/profile', function(req, res) {
-
   var userId = req.session.userId || null;
   var favorite = req.body.favorite;
-
   if(!userId) {
     res.redirect('/login');
   } else {
@@ -128,16 +169,6 @@ app.post('/profile', function(req, res) {
   }
 });
 
-//Creating post request to add a new favorite song to the users table:
-app.put("/profile", function (req, res) {
-  //Creating variables from params entered by new user (from user/signup.ejs form):
-  var song = req.body.songTitle;
-  var user = req.session.userId;
-  //Creates a new user using createSecure function (from user.js file):
-  db.Song.create({song_title:song,UserId:user}).then(function(song){
-        res.redirect("/profile");
-    });
-});
 
 //Creating post request to add a new user to the users table:
 //page where user will enter new user info:
@@ -164,47 +195,6 @@ app.post("/login", function (req, res) {
       }
     });
 });
-
-
-app.get('/search', function(req,res) {
-  res.render('search')
-});
-
-app.get('/songs', function (req, res) {
-  var spotifyUrl = "https://api.spotify.com/v1/search?q=track:";
-  var songSearch = req.query.songTitle;
-  var searchArray = songSearch.split(' ').join("+");
-  console.log("This is my array:" +searchArray);
-  var url = spotifyUrl + searchArray + "&type=track";
-  console.log(url);
-  request(url, function(err, resp, body){
-    if (!err && resp.statusCode === 200) {
-        var jsonData = JSON.parse(body);
-//        var albumName = jsonData.tracks.href;
-  //      console.log("This is my albumName: "+ albumName);
-    }
-    console.log("This is my object data: " +jsonData);
-    console.log(body);
-    res.render('songs',{taco: jsonData, songTitle: req.query.songTitle});
-  });
-});
-
-
-
-app.get('/album/:id', function (req, res) {
-  var url = "https://api.spotify.com/v1/albums/" + req.params.id;
-  console.log("This is my url /n/n/n/n/n/n/n/" + url);
-  request(url, function(err, resp, body){
-    if (!err && resp.statusCode === 200) {
-        var jsonData = JSON.parse(body);
-//        var albumName = jsonData.tracks.href;
-  //      console.log("This is my albumName: "+ albumName);
-    }
-    res.render('album',{taco: jsonData, albumId: req.params.id, songTitle: req.query.songTitle });
-  });
-});
-
-
 
 //Creating logout for current User:
 app.get('/logout', function(req,res){
