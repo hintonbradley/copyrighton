@@ -14,7 +14,13 @@
 	<div>
 		<h3>Key:</h3>
 		<p>C: Copyright for music & lyrics</p>
-		<p>C: Performance copyright for sound recording</p>
+		<p>P: Performance copyright for sound recording</p>
+
+<form action="/profile" method="POST">
+	<input type="hidden" name="favorite[albumId]" value="<%= albumId %>">
+	<input type="hidden" name="favorite[songTitle]" value="<%= songTitle %>">
+	<button type="submit">Save to Profile</button>
+</form> 
 
 </body>
 </html>

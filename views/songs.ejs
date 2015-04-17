@@ -9,7 +9,7 @@
 	<% for(var i = 0; i < taco.tracks.items.length; i++) { %>
 	<div>
 		<br><u>Song Title:</u> <%=taco.tracks.items[i].name%></a>
-		<br><u>Album Title:</u> <a href="/album/<%= taco.tracks.items[i].album.id %>"></u><%=taco.tracks.items[i].album.name%></a>
+		<br><u>Album Title:</u> <a href="/album/<%= taco.tracks.items[i].album.id %>?songTitle=<%=songTitle%>"></u><%=taco.tracks.items[i].album.name%></a>
 		<br><u>Artist Name:</u> <%=taco.tracks.items[i].artists[0].name%>
 		<br><u>Album ID:</u> <%=taco.tracks.items[i].album.id%>
 	</div>
