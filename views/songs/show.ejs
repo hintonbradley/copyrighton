@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  	<title>CopyRight-On!</title>
   	<!-- Latest compiled and minified CSS -->
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  </head>
-
-  <body>
+	<meta charset="UTF-8">
+	<title>Song Information</title>
+</head>
+ <body>
     <div class="container">
       <!-- Navigation Bar -->
       <div id="navbar" class="navbar-collapse collapse">
@@ -27,24 +27,16 @@
       </div>
     <!-- End of Navigation Bar -->
 
-	<meta charset="UTF-8">
-	<title>Search page</title>
-</head>
-<body>
+	<h2><u>Song Information</u>:</h2>
 	<div>
- 		<h1>Welcome, <%= user.email %>!</h1><br>
-	<div>
-		<h4>My favorite songs:</h4>
-		<ul>
-			<% songs.forEach(function(song) { %>
-				<li><a href="/songs/<%= song.id %>"><%= song.song_title %></a> by <%= song.artist_name %></li><br>
-			<% }); %>
-		</ul>
-	</div>
-	<div>
-	<form method="GET" action="/logout">
-			<button>Logout</button>
-		</form>
+		<br><u><b>Song Title:</b></u> <%= mySong.song_title %></a><br>
+		<br><u><b>Album Name:</b></u> <%= mySong.album_title %></a><br>
+		<br><u><b>Artist Name:</b></u> <%= mySong.artist_name %></a><br>
+		<br><u><b>Copyright:</b></u> <%= mySong.copyright %></a>
+
+		<br><br><form method="POST" action="/songs/<%= mySong.id %>?_method=DELETE">
+      <button type="submit">Delete Song</button>
+    </form>
 	</div>
 </body>
 </html>

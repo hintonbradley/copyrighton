@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+  	<title>CopyRight-On!</title>
+  	<!-- Latest compiled and minified CSS -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Navigation Bar -->
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="/search">Search</a></li>
+          <li><a href="/profile">My Profile</a></li>
+        </ul>
+        <% if (taco ===0) { %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="signup">Sign up</a></li>
+          <li><a href="login">Log in</a></li>
+        </ul>
+        <% } else { %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
+        <% }; %>
+      </div>
+    <!-- End of Navigation Bar -->
+
 	<meta charset="UTF-8">
 	<title>Song search page</title>
 </head>
@@ -11,12 +37,7 @@
 			<input type="text" name="songTitle" placeholder="Song Title">
 <!-- 			<input type="text" name="artist" placeholder="Artist"></br></br>
  			<input type="text" name="album" placeholder="Album Title"></br></br> -->
-			<button>Click me</button>
-		</form>
-	</div>
-	<div>
-	<form method="GET" action="/logout">
-			<button>Logout</button>
+			<button>Search</button>
 		</form>
 	</div>
 </body>
