@@ -15,6 +15,10 @@ db = require("./models"),
 //In order to track sessions, express-session is required (command-line:npm install --save express-session):
     session = require("express-session"),
     app = express();
+
+// Add public file for css
+app.use(express.static(__dirname + '/public'));
+
 //Overrides the method of a request (for PUTS?)
 var methodOveride = require('method-override');
 app.use(methodOveride("_method"));
