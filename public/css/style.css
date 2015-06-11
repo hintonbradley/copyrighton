@@ -1,7 +1,16 @@
 
 
-html,
-body {
+
+.profile {
+   background: url("../img/profile.jpg");
+   background-size: 90%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+.index {
    background: url("../img/index.jpg");
    background-size: 90%;
    background-attachment: fixed;
@@ -21,10 +30,6 @@ body {
 #body #indexText {
    font-size: 24px;
 }
-#container {
-   min-height:100%;
-   position:relative;
-}
 
 #body {
    padding-top:10px;
@@ -37,14 +42,23 @@ body {
    font-size: 18px;
 }
 
-.nav {
-
-}
-
 .navbar-brand {
    font-size: 18px;
 }
 
+.red {
+   color: red;
+}
+
+.indent {
+   padding-left: 90px;
+}
+
+.welcome {
+   padding-top: 90px;
+   padding-left: 110px;
+   font-size: 48px;
+}   
 
 #indexText {
    font-size: 18px;
@@ -58,14 +72,24 @@ body {
    font-size: 48px;
 }
 
-
 a {
    text-decoration: none;
    color: red;
 }
 
-/*@media (max-width: 775px) {
-   ul {
+@media (max-width: 700px) {
+#indexText {
+   font-size: 14px;
+   padding-top: 0px;
+   color: red;
+}
+
+#indexTitle {
+   font-size: 24px;
+   color: red;
+} 
+
+ /*  ul {
       font-size: 18px;
       margin-bottom: 0px;
       padding-bottom: 0px;

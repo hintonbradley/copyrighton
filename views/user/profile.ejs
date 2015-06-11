@@ -1,50 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-  	<title>CopyRight-On!</title>
-  	<!-- Latest compiled and minified CSS -->
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>CopyRight-On!</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/style.css" rel="stylesheet">
   </head>
-
-  <body>
-    <div class="container">
-      <!-- Navigation Bar -->
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-left">
-          <li><a href="/search">Search</a></li>
-          <li><a href="/profile">My Profile</a></li>
-        </ul>
-        <% if (taco ===0) { %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="signup">Sign up</a></li>
-          <li><a href="login">Log in</a></li>
-        </ul>
-        <% } else { %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/logout">Log Out</a></li>
-        </ul>
-        <% }; %>
+  <body class="profile">
+<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Copyright-On!</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/search">Search</a></li>      
+            <li><a href="/profile">My Profile</a></li>
+            <% if (taco ===0) { %>
+            <li><a href="signup">Sign up</a></li>
+            <li><a href="login">Log in</a></li>
+            <% } else { %>
+            <li><a href="/logout">Log Out</a></li>
+            <% }; %>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-    <!-- End of Navigation Bar -->
-
-	<meta charset="UTF-8">
-	<title>Search page</title>
-</head>
-<body>
-	<div>
- 		<h1>Welcome, <%= user.email %>!</h1><br>
-	<div>
-		<h4>My favorite songs:</h4>
+    </div>
+	  <div class="row">
+      <div class="welcome col-xl-8">
+        <h2 class="red">Welcome, <%= user.email %>!</h2><br>
+      </div>
+      <div class="col-xl-4">
+      </div>
+    </div>
+    <div class="indent col-xs-10 col">
+		  <h4 class="red">My favorite songs:</h4>
 		<ul>
 			<% songs.forEach(function(song) { %>
-				<li><a href="/songs/<%= song.id %>"><%= song.song_title %></a> by <%= song.artist_name %></li><br>
+				<li class="red"><a href="/songs/<%= song.id %>"><%= song.song_title %> by <%= song.artist_name %></a></li><br>
 			<% }); %>
 		</ul>
+    <div class="indent col-xs-2 col">
 	</div>
 	<div>
-	<form method="GET" action="/logout">
-			<button>Logout</button>
-		</form>
 	</div>
 </body>
 </html>
