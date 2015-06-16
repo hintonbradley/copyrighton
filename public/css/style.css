@@ -3,7 +3,7 @@
 
 .profile {
    background: url("../img/profile.jpg");
-   background-size: 90%;
+   background-size: 100%;
    background-attachment: fixed;
    background-repeat: no-repeat;
    background-position: center; 
@@ -19,12 +19,97 @@
    height:100%;
 }
 
+.search {
+   background: url("../img/search.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+.login {
+   background: url("../img/login.jpg");
+   background-size: 90%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+.signup {
+   background: url("../img/signup.jpg");
+   background-size: 90%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+.songs {
+   background: url("../img/songs.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+.songShow {
+   background: url("../img/songShow.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+.signup {
+   background: url("../img/signup.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+.album {
+   background: url("../img/album.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+
+#songShowInfo {
+   padding-top: 50px;
+}
+
+#songShowInfo p {
+   font-size: 18px;
+}
+
+.searchBox {
+   padding: 5px 5px 30px 5px;
+   text-align: center;
+   background: white;
+}
+
 #body {
 	font-size: 58px;
 	padding-left: 100px;
 	padding-top: 70px;
+}
 
-
+.userForm {
+   padding-top: 20px;
+   padding-left: 20px;
+   padding-bottom: 20px;
+   background-color: white;
+   text-align: center;
+   margin-top: 100px;
 }
 
 #body #indexText {
@@ -77,7 +162,57 @@ a {
    color: red;
 }
 
-@media (max-width: 700px) {
+.center-y{
+   vertical-align:middle;
+   margin-top: 20%;
+   position: relative;
+   background: black;
+}
+
+.center-x{ 
+   text-align:center;
+}
+
+.albumInfo {
+   padding-top: 50px;
+   font-size: 18px;
+}
+
+
+
+/*Code for centering login/signup pages*/
+html, body{height:100%; margin:0;padding:0}
+
+.container-fluid{
+  height:100%;
+  display:table;
+  width: 33%;
+  padding: 0;
+}
+
+.row-fluid {height: 100%; display:table-cell; vertical-align: middle;}
+
+.centering {
+  float:none;
+  margin:0 auto;
+  background-color: white;
+  padding: 10px 20px 10px 20px;
+}
+/*End of login/signup code*/
+
+.songInfo {
+   padding-top: 50px;
+}
+
+.songInfo p{
+   font-size: 20px;
+}
+
+.white {
+   color: white;
+}
+
+@media (max-width: 767px) {
 #indexText {
    font-size: 14px;
    padding-top: 0px;
@@ -89,36 +224,83 @@ a {
    color: red;
 } 
 
- /*  ul {
-      font-size: 18px;
-      margin-bottom: 0px;
-      padding-bottom: 0px;
-   }
-   li {
-      margin-right: 40px;
-      margin-left: 40px;
-   }
-   body {
-      background-position: 70% 100%;
-      background-attachment: fixed;
-      background-repeat: none;
-      height:100%;
-   }
-   #footer {
-      height: 30px;
-      margin-bottom: 30px;
-      padding-bottom: 0px;
-   }
-   h1 {
-      display: none;
-   }
-   h2 {
-      font-size: 34px;
-      padding-top: 0px;
-      padding-bottom: 0px;
-      text-align: center;
-      background: black;
-      display: block;
-      color: red;
-   }
-}*/
+.profile {
+   background-repeat: repeat-y;
+   background-position: center; 
+}
+
+.welcome {
+   background: black;
+} 
+
+.search {
+   background: url("../img/searchSmall.png");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: top; 
+   height:100%;
+}
+
+.userForm {
+   margin-top: 50px;
+   margin-bottom: 20px;
+   padding: 0px;
+   background: none;
+}
+
+.login {
+   color: red;
+   background-position: top; 
+}
+
+.songShow {
+   background: url("../img/songShowSmall.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: top; 
+   height:100%;
+}
+
+.login {
+   background: url("../img/loginSmall.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: top; 
+   height:100%;
+}
+
+.songs{
+   background: url("../img/songs.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: repeat-y;
+   background-position: top; 
+   height:100%;
+}
+
+.signup{
+   background: url("../img/signupSmall.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: top; 
+   height:100%;
+}
+
+.album{
+   background: url("../img/albumSmall.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: top; 
+   height:100%;
+}
+
+
+.songResize{
+   font-size: 8px;
+}
+

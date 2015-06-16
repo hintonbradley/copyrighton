@@ -1,21 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Song search page</title>
-</head>
-<body>
-	<h2>Click on an album title to view copyright information</h2>
-	<% for(var i = 0; i < taco.tracks.items.length; i++) { %>
-	<div>
-		<br><u>Song Title:</u> <%=taco.tracks.items[i].name%></a>
-		<br><u>Album Title:</u> <a href="/album/<%= taco.tracks.items[i].album.id %>/<%=taco.tracks.items[i].name%>/<%=taco.tracks.items[i].album.name%>/<%=taco.tracks.items[i].artists[0].name%>"></u><%=taco.tracks.items[i].album.name%></a>
-		<br><u>Artist Name:</u> <%=taco.tracks.items[i].artists[0].name%>
-		<br><u>Album ID:</u> <%=taco.tracks.items[i].album.id%>
-		<br><u>Song ID:</u> <%=taco.tracks.items[i].id%></a>
-	</div>
-	<% } %>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>CopyRight-On!</title>
 
-</body>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body class="songs">
+<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Copyright-On!</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/search">Search</a></li>      
+            <li><a href="/profile">My Profile</a></li>
+            <% if (taco ===0) { %>
+            <li><a href="signup">Sign up</a></li>
+            <li><a href="login">Log in</a></li>
+            <% } else { %>
+            <li><a href="/logout">Log Out</a></li>
+            <% }; %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+	  <div class="row">
+      <div class="col-md-1 col-xs-2">
+      </div>
+      <div class="white col-md-7 col-xs-6">
+        <div class="songInfo">
+          <h2 class="red">Click on an album title to view copyright information</h2>
+          <% for(var i = 0; i < taco.tracks.items.length; i++) { %>
+          <div>
+            <p>
+              <br><u>Song Title:</u> <%=taco.tracks.items[i].name%></a>
+              <br><u>Album Title:</u> <a href="/album/<%= taco.tracks.items[i].album.id %>/<%=taco.tracks.items[i].name%>/<%=taco.tracks.items[i].album.name%>/<%=taco.tracks.items[i].artists[0].name%>"></u><%=taco.tracks.items[i].album.name%></a>
+              <br><u>Artist Name:</u> <%=taco.tracks.items[i].artists[0].name%>
+              <br><u>Album ID:</u> <%=taco.tracks.items[i].album.id%>
+              <br><u>Song ID:</u> <%=taco.tracks.items[i].id%></a>
+            </p>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="col-md-4 col-xs-4">
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>
-

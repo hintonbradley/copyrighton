@@ -1,37 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Album Information</title>
-</head>
-<body>
-	<h2><u>Copyright information</u>:</h2>
-	<% for(var i = 0; i < taco.copyrights.length; i++) { %>
-	<div>
-		<br><u><b>Song Title:</b></u> <%= songTitle %></a><br>
-		<br><u><b>Album Name:</b></u> <%= albumName %></a><br>
-		<br><u><b>Album ID:</b></u> <%= albumId %></a><br>
-		<br><u><b>Artist Name:</b></u> <%= artistName %></a><br>
-		<h3>
-			<br><u><b>Copyright held by:</b></u> <%=taco.copyrights[i].text%></a>
-		</h3>
-	</div>
-	<% } %>
-	<!-- Creating a hidden form to save url parameters so users can save data if they want to 'favorite' a particular album and add it to their profile. -->
-	<div>
-		<!-- Creating a POST method with the route '/profile'. -->
-		<br><form action="/profile" method="POST">
-			<!-- Creating a hidden input type so the form isn't desplayed on the album page. The key: value pair of the data is going to be "favorite: [dataName] so we can reference it in the appljs file under the POST method with the /profile route." -->
-			<input type="hidden" name="favorite[albumId]" value="<%= albumId %>">
-			<input type="hidden" name="favorite[artistName]" value="<%= artistName%>">
-			<input type="hidden" name="favorite[songTitle]" value="<%= songTitle %>">
-			<input type="hidden" name="favorite[albumName]" value="<%= albumName%>">
-			<input type="hidden" name="taco[copyrights]" value="<%= taco.copyrights[0].text%>">
-			<button type="submit">Save to Profile</button>
-		</form> 
-		<h3>Key:</h3>
-		<p>C: Copyright for music & lyrics</p>
-		<p>P: Performance copyright for sound recording</p>
-	</div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>CopyRight-On!</title>
+
+    <!-- Bootstrap -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="/css/style.css" rel="stylesheet">
+  </head>
+  <body class="album">
+<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Copyright-On!</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/search">Search</a></li>      
+            <li><a href="/profile">My Profile</a></li>
+            <% if (taco ===0) { %>
+            <li><a href="signup">Sign up</a></li>
+            <li><a href="login">Log in</a></li>
+            <% } else { %>
+            <li><a href="/logout">Log Out</a></li>
+            <% }; %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <div class="row">
+      <div class="col-lg-1 col-md-1 col-xs-2">
+      </div>
+      <div class="red col-lg-7 col-md-6 col-xs-6">
+        <div class="albumInfo">
+          <h2><u>Copyright information</u>:</h2>
+          <% for(var i = 0; i < taco.copyrights.length; i++) { %>
+          <br><u><b>Song Title:</b></u> <%= songTitle %></a><br>
+		      <br><u><b>Album Name:</b></u> <%= albumName %></a><br>
+		      <br><u><b>Album ID:</b></u> <%= albumId %></a><br>
+		      <br><u><b>Artist Name:</b></u> <%= artistName %></a><br>
+		      <br><u><b>Copyright held by:</b></u> <%=taco.copyrights[i].text%></a><br><br>
+          <p>---</p>
+          <% } %>
+        </div>
+        <!-- Creating a hidden form to save url parameters so users can save data if they want to 'favorite' a particular album and add it to their profile. -->
+        <div>
+          <!-- Creating a POST method with the route '/profile'. -->
+          <br><form action="/profile" method="POST">
+          <!-- Creating a hidden input type so the form isn't desplayed on the album page. The key: value pair of the data is going to be "favorite: [dataName] so we can reference it in the appljs file under the POST method with the /profile route." -->
+          <input type="hidden" name="favorite[albumId]" value="<%= albumId %>">
+		      <input type="hidden" name="favorite[artistName]" value="<%= artistName%>">
+		      <input type="hidden" name="favorite[songTitle]" value="<%= songTitle %>">
+		      <input type="hidden" name="favorite[albumName]" value="<%= albumName%>">
+		      <input type="hidden" name="taco[copyrights]" value="<%= taco.copyrights[0].text%>">
+		      <button type="submit">Save to Profile</button>
+		      </form> 
+		      <h3>Key:</h3>
+		      <p>C: Copyright for music & lyrics</p>
+		      <p>P: Performance copyright for sound recording</p>
+        </div>
+      </div>
+      <div class-"col-lg-4 col-md-5 col-xs-4">
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
 </html>
