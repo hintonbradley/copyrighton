@@ -1,6 +1,3 @@
-
-
-
 .profile {
    background: url("../img/profile.jpg");
    background-size: 100%;
@@ -11,16 +8,17 @@
 }
 
 .index {
-   background: url("../img/index.jpg");
-   background-size: 90%;
+   background: url("../img/index2.jpg");
+   background-size: 100%;
    background-attachment: fixed;
    background-repeat: no-repeat;
    background-position: center; 
    height:100%;
+   color: red;
 }
 
 .search {
-   background: url("../img/search.jpg");
+   background: url("../img/search3.jpg");
    background-size: 100%;
    background-attachment: fixed;
    background-repeat: no-repeat;
@@ -30,15 +28,6 @@
 
 .login {
    background: url("../img/login.jpg");
-   background-size: 90%;
-   background-attachment: fixed;
-   background-repeat: no-repeat;
-   background-position: center; 
-   height:100%;
-}
-
-.signup {
-   background: url("../img/signup.jpg");
    background-size: 90%;
    background-attachment: fixed;
    background-repeat: no-repeat;
@@ -65,7 +54,7 @@
 }
 
 .signup {
-   background: url("../img/signup.jpg");
+   background: url("../img/signup4.jpg");
    background-size: 100%;
    background-attachment: fixed;
    background-repeat: no-repeat;
@@ -212,16 +201,19 @@ html, body{height:100%; margin:0;padding:0}
    color: white;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 997px) {
 #indexText {
-   font-size: 14px;
+   font-size: 16px;
    padding-top: 0px;
+   padding-left: 2em;
    color: red;
+   width: 20em;
 }
 
 #indexTitle {
    font-size: 24px;
    color: red;
+   padding-left: 2em;
 } 
 
 .profile {
@@ -233,25 +225,11 @@ html, body{height:100%; margin:0;padding:0}
    background: black;
 } 
 
-.search {
-   background: url("../img/searchSmall.png");
-   background-size: 100%;
-   background-attachment: fixed;
-   background-repeat: no-repeat;
-   background-position: top; 
-   height:100%;
-}
-
 .userForm {
    margin-top: 50px;
    margin-bottom: 20px;
    padding: 0px;
    background: none;
-}
-
-.login {
-   color: red;
-   background-position: top; 
 }
 
 .songShow {
@@ -264,7 +242,7 @@ html, body{height:100%; margin:0;padding:0}
 }
 
 .login {
-   background: url("../img/loginSmall.jpg");
+   background: url("../img/loginSmall3.jpg");
    background-size: 100%;
    background-attachment: fixed;
    background-repeat: no-repeat;
@@ -291,7 +269,7 @@ html, body{height:100%; margin:0;padding:0}
 }
 
 .album{
-   background: url("../img/albumSmall.jpg");
+   background: url("../img/albumSmall4.jpg");
    background-size: 100%;
    background-attachment: fixed;
    background-repeat: no-repeat;
@@ -304,3 +282,21 @@ html, body{height:100%; margin:0;padding:0}
    font-size: 8px;
 }
 
+@media (max-width: 540px) {
+.index {
+   background: url("../img/indexSmall.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center; 
+   height:100%;
+}
+
+.search {
+   background: url("../img/searchSmall2.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: top; 
+   height:100%;
+}
