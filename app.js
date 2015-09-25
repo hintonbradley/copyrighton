@@ -14,6 +14,7 @@ db = require("./models"),
     request = require('request'),
 //In order to track sessions, express-session is required (command-line:npm install --save express-session):
     session = require("express-session"),
+    bcrypt = require("bcrypt"),
     app = express();
 
 // Add public file for css
