@@ -1,3 +1,6 @@
+html {
+   background-color: black;
+}
 .profile {
    background: url("../img/profile.jpg");
    background-size: 100%;
@@ -203,17 +206,17 @@ html, body{height:100%; margin:0;padding:0}
 
 @media (max-width: 997px) {
 #indexText {
-   font-size: 16px;
+   font-size: 20px;
    padding-top: 0px;
    padding-left: 2em;
    color: red;
-   width: 20em;
+   width: 27em;
 }
 
 #indexTitle {
    font-size: 24px;
    color: red;
-   padding-left: 2em;
+   padding-left: 1.5em;
 } 
 
 .profile {
@@ -234,15 +237,6 @@ html, body{height:100%; margin:0;padding:0}
 
 .songShow {
    background: url("../img/songShowSmall.jpg");
-   background-size: 100%;
-   background-attachment: fixed;
-   background-repeat: no-repeat;
-   background-position: top; 
-   height:100%;
-}
-
-.login {
-   background: url("../img/loginSmall3.jpg");
    background-size: 100%;
    background-attachment: fixed;
    background-repeat: no-repeat;
@@ -277,6 +271,15 @@ html, body{height:100%; margin:0;padding:0}
    font-size: 8px;
 }
 
+.index {
+   background: url("../img/indexMiddle.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: top; 
+   height:100%;
+}
+
 @media (max-width: 540px) {
 .index {
    background: url("../img/indexSmall.jpg");
@@ -289,6 +292,23 @@ html, body{height:100%; margin:0;padding:0}
 
 .search {
    background: url("../img/searchSmall2.jpg");
+   background-size: 100%;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: top; 
+   height:100%;
+}
+
+#indexText {
+   font-size: 16px;
+   padding-top: 0px;
+   padding-left: 3em;
+   color: red;
+   width: 24em;
+}
+
+.login {
+   background: url("../img/loginSmall3.jpg");
    background-size: 100%;
    background-attachment: fixed;
    background-repeat: no-repeat;
