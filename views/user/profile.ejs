@@ -53,17 +53,16 @@
       <div class="col-xl-4">
       </div>
     </div>
-    <div class="indent col-xs-10 col">
-		  <h4 class="red">My favorite songs:</h4>
-		<ul>
-			<% songs.forEach(function(song) { %>
-				<li class="red"><a href="/songs/<%= song.id %>"><%= song.song_title %> by <%= song.artist_name %></a></li><br>
-			<% }); %>
-		</ul>
-    <div class="indent col-xs-2 col">
-	</div>
-	<div>
-	</div>
+    <div class='row'>
+      <div class="indent col-xs-10 col">
+		    <h4 class="red">My favorite songs:</h4>
+		    <ul>
+			   <% songs.forEach(function(song) { %>
+				  <li class="red"><a href="/songs/<%= song.id %>"><%= song.song_title %> by <%= song.artist_name %></a></li><br>
+			   <% }); %>
+		    </ul>
+      <div class="indent col-xs-2 col">
+	 </div>
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
