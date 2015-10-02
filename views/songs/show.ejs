@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>CopyRight-On! Song Show Page</title>
 
-    <!-- Bootstrap -->
+    <title>CopyRight-On! Song Search Page</title>
+    
+    <!-- Adding Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <link href="../css/style.css" rel="stylesheet">
   </head>
   <body class="songShow">
-<!-- Fixed navbar -->
+    <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -34,11 +34,11 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/search">Search</a></li>      
-            <li><a href="/profile">My Profile</a></li>
             <% if (taco ===0) { %>
             <li><a href="signup">Sign up</a></li>
             <li><a href="login">Log in</a></li>
             <% } else { %>
+            <li><a href="/profile">My Profile</a></li>
             <li><a href="/logout">Log Out</a></li>
             <% }; %>
           </ul>
@@ -51,19 +51,23 @@
       </div>
       <div class="red col-xs-8">
         <div id="songShowInfo">
-        <h1><u>Song Information</u>:</h1>
-        <div><p>
-          <br><u><b>Song Title:</b></u> <%= mySong.song_title %></a><br>
-          <br><u><b>Album Name:</b></u> <%= mySong.album_title %></a><br>
-          <br><u><b>Artist Name:</b></u> <%= mySong.artist_name %></a><br>
-          <br><u><b>Copyright:</b></u> <%= mySong.copyright %></a>
-        </p>
-          <br><br><form method="POST" action="/songs/<%= mySong.id %>?_method=DELETE">
-          <button type="submit">Delete Song</button>
-        </form>
+          <h1><u>Song Information</u>:</h1>
+          <div>
+            <p>
+              <br><u><b>Song Title:</b></u> <%= mySong.song_title %></a><br>
+              <br><u><b>Album Name:</b></u> <%= mySong.album_title %></a><br>
+              <br><u><b>Artist Name:</b></u> <%= mySong.artist_name %></a><br>
+              <br><u><b>Copyright:</b></u> <%= mySong.copyright %></a>
+            </p>
+            <br><br>
+            <form method="POST" action="/songs/<%= mySong.id %>?_method=DELETE">
+              <button type="submit">Delete Song</button>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
       <div class="col-xs-3">
+      </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
