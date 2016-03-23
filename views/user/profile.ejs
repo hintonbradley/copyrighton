@@ -18,7 +18,7 @@
     <![endif]-->
     <link href="css/style.css" rel="stylesheet">
   </head>
-  <body class="profile">
+  <body>
 <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -46,23 +46,25 @@
     </div>
 
     <!-- Main body -->
-	  <div class="row">
-      <div class="welcome col-xl-8">
-        <h2 class="red">Welcome, <%= user.email %>!</h2><br>
+    <div class="profile">
+  	  <div class="row">
+        <div class="welcome col-xl-8">
+          <h2 class="red">Welcome, <%= user.email %>!</h2><br>
+        </div>
+        <div class="col-xl-4">
+        </div>
       </div>
-      <div class="col-xl-4">
-      </div>
-    </div>
-    <div class='row'>
-      <div class="indent col-xs-10">
-		    <h4 class="red">My favorite songs:</h4>
-		    <ul>
-          <% songs.forEach(function(song) { %>
-				  <li class="red"><a href="/songs/<%= song.id %>"><%= song.song_title %> by <%= song.artist_name %></a></li><br>
-          <% }); %>
-		    </ul>
-      </div>
-      <div class="indent col-xs-2">
+      <div class='row'>
+        <div class="indent col-xs-10">
+  		    <h4 class="red">My favorite songs:</h4>
+  		    <ul>
+            <% songs.forEach(function(song) { %>
+  				  <li class="red"><a href="/songs/<%= song.id %>"><%= song.song_title %> by <%= song.artist_name %></a></li><br>
+            <% }); %>
+  		    </ul>
+        </div>
+        <div class="indent col-xs-2">
+        </div>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

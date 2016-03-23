@@ -29,8 +29,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
   secret: 'Double Top Secret Probation',
   resave: false,
-  save: {uninitialized: true
-  }
+  // save: {uninitialized: true }
+  saveUninitialized: true 
 }))
 //Creating ability to track sessions:
 app.use("/", function (req, res, next) {

@@ -18,7 +18,7 @@
     <![endif]-->
     <link href="css/style.css" rel="stylesheet">
   </head>
-  <body class="songs">
+  <body>
 <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -46,26 +46,28 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript -->
-	  <div class="row">
-      <div class="col-md-1 col-xs-1">
-      </div>
-      <div class="white col-md-7 col-xs-10">
-        <div class="songInfo">
-          <h2 class="red">Click on an album title to view copyright information</h2>
-          <% for(var i = 0; i < taco.tracks.items.length; i++) { %>
-          <div>
-            <p>
-              <br><u>Song Title:</u> <%=taco.tracks.items[i].name%></a>
-              <br><u>Album Title:</u> <a href="/album/<%= taco.tracks.items[i].album.id %>/<%=taco.tracks.items[i].name%>/<%=taco.tracks.items[i].album.name%>/<%=taco.tracks.items[i].artists[0].name%>"></u><%=taco.tracks.items[i].album.name%></a>
-              <br><u>Artist Name:</u> <%=taco.tracks.items[i].artists[0].name%>
-              <br><u>Album ID:</u> <%=taco.tracks.items[i].album.id%>
-              <br><u>Song ID:</u> <%=taco.tracks.items[i].id%></a>
-            </p>
-          </div>
-          <% } %>
+    <div class="songs">
+  	  <div class="row">
+        <div class="col-md-1 col-xs-1">
         </div>
-      </div>
-      <div class="col-md-4 col-xs-1">
+        <div class="white col-md-7 col-xs-10">
+          <div class="songInfo">
+            <h2 class="red">Click on an album title to view copyright information</h2>
+            <% for(var i = 0; i < taco.tracks.items.length; i++) { %>
+            <div>
+              <p>
+                <br><u>Song Title:</u> <%=taco.tracks.items[i].name%></a>
+                <br><u>Album Title:</u> <a href="/album/<%= taco.tracks.items[i].album.id %>/<%=taco.tracks.items[i].name%>/<%=taco.tracks.items[i].album.name%>/<%=taco.tracks.items[i].artists[0].name%>"></u><%=taco.tracks.items[i].album.name%></a>
+                <br><u>Artist Name:</u> <%=taco.tracks.items[i].artists[0].name%>
+                <br><u>Album ID:</u> <%=taco.tracks.items[i].album.id%>
+                <br><u>Song ID:</u> <%=taco.tracks.items[i].id%></a>
+              </p>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-1">
+        </div>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
