@@ -1,3 +1,7 @@
+body {
+   background: black;
+}
+
 html {
    background-color: black;
 }
@@ -57,7 +61,6 @@ html {
    background-position: top; 
    height: 100%;
    overflow: scroll;
-   background: black;
 }
 
 .signup {
