@@ -18,7 +18,7 @@
     <![endif]-->
     <link href="../css/style.css" rel="stylesheet">
   </head>
-  <body class="songShow">
+  <body>
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -46,27 +46,29 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript -->
-    <div class="row">
-      <div class="col-xs-1">
-      </div>
-      <div class="red col-xs-8">
-        <div id="songShowInfo">
-          <h1><u>Song Information</u>:</h1>
-          <div>
-            <p>
-              <br><u><b>Song Title:</b></u> <%= mySong.song_title %></a><br>
-              <br><u><b>Album Name:</b></u> <%= mySong.album_title %></a><br>
-              <br><u><b>Artist Name:</b></u> <%= mySong.artist_name %></a><br>
-              <br><u><b>Copyright:</b></u> <%= mySong.copyright %></a>
-            </p>
-            <br><br>
-            <form method="POST" action="/songs/<%= mySong.id %>?_method=DELETE">
-              <button type="submit">Delete Song</button>
-            </form>
+    <div class="songShow">
+      <div class="row">
+        <div class="col-xs-1">
+        </div>
+        <div class="red col-xs-8">
+          <div id="songShowInfo">
+            <h1><u>Song Information</u>:</h1>
+            <div>
+              <p>
+                <br><u><b>Song Title:</b></u> <%= mySong.song_title %></a><br>
+                <br><u><b>Album Name:</b></u> <%= mySong.album_title %></a><br>
+                <br><u><b>Artist Name:</b></u> <%= mySong.artist_name %></a><br>
+                <br><u><b>Copyright:</b></u> <%= mySong.copyright %></a>
+              </p>
+              <br><br>
+              <form method="POST" action="/songs/<%= mySong.id %>?_method=DELETE">
+                <button type="submit">Delete Song</button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-xs-3">
+        <div class="col-xs-3">
+        </div>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

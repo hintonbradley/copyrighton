@@ -20,7 +20,7 @@
     <![endif]-->
     <link href="/css/style.css" rel="stylesheet">
   </head>
-  <body class="album">
+  <body>
 <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -48,39 +48,41 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript -->
-    <div class="row">
-      <div class="col-lg-1 col-md-1 col-xs-2">
-      </div>
-      <div class="red col-lg-7 col-md-6 col-xs-6">
-        <div class="albumInfo">
-          <h2><u>Copyright information</u>:</h2>
-          <% for(var i = 0; i < taco.copyrights.length; i++) { %>
-          <br><u><b>Song Title:</b></u> <%= songTitle %></a><br>
-		      <br><u><b>Album Name:</b></u> <%= albumName %></a><br>
-		      <br><u><b>Album ID:</b></u> <%= albumId %></a><br>
-		      <br><u><b>Artist Name:</b></u> <%= artistName %></a><br>
-		      <br><u><b>Copyright held by:</b></u> <%=taco.copyrights[i].text%></a><br><br>
-          <p>---</p>
-          <% } %>
+    <div class="album">
+      <div class="row">
+        <div class="col-lg-1 col-md-1 col-xs-2">
         </div>
-        <!-- Creating a hidden form to save url parameters so users can save data if they want to 'favorite' a particular album and add it to their profile. -->
-        <div>
-          <!-- Creating a POST method with the route '/profile'. -->
-          <br><form action="/profile" method="POST">
-          <!-- Creating a hidden input type so the form isn't desplayed on the album page. The key: value pair of the data is going to be "favorite: [dataName] so we can reference it in the appljs file under the POST method with the /profile route." -->
-          <input type="hidden" name="favorite[albumId]" value="<%= albumId %>">
-		      <input type="hidden" name="favorite[artistName]" value="<%= artistName%>">
-		      <input type="hidden" name="favorite[songTitle]" value="<%= songTitle %>">
-		      <input type="hidden" name="favorite[albumName]" value="<%= albumName%>">
-		      <input type="hidden" name="taco[copyrights]" value="<%= taco.copyrights[0].text%>">
-		      <button type="submit">Save to Profile</button>
-		      </form> 
-		      <h3>Key:</h3>
-		      <p>C: Copyright for music & lyrics</p>
-		      <p>P: Performance copyright for sound recording</p>
+        <div class="red col-lg-7 col-md-6 col-xs-6">
+          <div class="albumInfo">
+            <h2><u>Copyright information</u>:</h2>
+            <% for(var i = 0; i < taco.copyrights.length; i++) { %>
+            <br><u><b>Song Title:</b></u> <%= songTitle %></a><br>
+  		      <br><u><b>Album Name:</b></u> <%= albumName %></a><br>
+  		      <br><u><b>Album ID:</b></u> <%= albumId %></a><br>
+  		      <br><u><b>Artist Name:</b></u> <%= artistName %></a><br>
+  		      <br><u><b>Copyright held by:</b></u> <%=taco.copyrights[i].text%></a><br><br>
+            <p>---</p>
+            <% } %>
+          </div>
+          <!-- Creating a hidden form to save url parameters so users can save data if they want to 'favorite' a particular album and add it to their profile. -->
+          <div>
+            <!-- Creating a POST method with the route '/profile'. -->
+            <br><form action="/profile" method="POST">
+            <!-- Creating a hidden input type so the form isn't desplayed on the album page. The key: value pair of the data is going to be "favorite: [dataName] so we can reference it in the appljs file under the POST method with the /profile route." -->
+            <input type="hidden" name="favorite[albumId]" value="<%= albumId %>">
+  		      <input type="hidden" name="favorite[artistName]" value="<%= artistName%>">
+  		      <input type="hidden" name="favorite[songTitle]" value="<%= songTitle %>">
+  		      <input type="hidden" name="favorite[albumName]" value="<%= albumName%>">
+  		      <input type="hidden" name="taco[copyrights]" value="<%= taco.copyrights[0].text%>">
+  		      <button type="submit">Save to Profile</button>
+  		      </form> 
+  		      <h3>Key:</h3>
+  		      <p>C: Copyright for music & lyrics</p>
+  		      <p>P: Performance copyright for sound recording</p>
+          </div>
         </div>
-      </div>
-      <div class-"col-lg-4 col-md-5 col-xs-4">
+        <div class-"col-lg-4 col-md-5 col-xs-4">
+        </div>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
